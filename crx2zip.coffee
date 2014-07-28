@@ -4,7 +4,7 @@ util = require 'util'
 Transform = require('stream').Transform or require('readable-stream').Transform
 
 class Crx2zip extends Transform
-  firstChunk = true
+  firstChunk: true
 
   calcLength: (a, b, c, d) ->
     length = 0
@@ -15,8 +15,8 @@ class Crx2zip extends Transform
     return length
 
   _transform: (chunk, enc, cb) ->
-    if firstChunk
-      firstChunk = false
+    if @firstChunk
+      @firstChunk = false
 
       console.info 'Signature pre transform', chunk.readUInt32LE(0).toString(16)
 
